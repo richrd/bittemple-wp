@@ -1,0 +1,51 @@
+@import '_variables.scss';
+
+/******************************************************************************
+ * POST STYLES
+ */
+article.post {
+
+    margin-bottom: $spacing_y;
+
+    .post-title {
+        margin-top: 0;
+    }
+
+    .post-metadata {
+        .fa {
+            margin-right: $spacing/4;
+        }
+
+        div {
+            display: inline-block;
+            margin-top: $spacing/2;
+            margin-right: $spacing;
+        }
+    }
+
+    .post-categories {
+        ul {
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+
+            li {
+                display: inline-block;
+                margin-right: $spacing_x/2;
+                a {
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+
+    .post-tags {
+        a {
+            display: inline-block;
+            margin-right: $spacing_x/2;
+            text-decoration: none;
+        }
+    }
+
+}

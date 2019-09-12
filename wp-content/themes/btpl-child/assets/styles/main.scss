@@ -1,0 +1,109 @@
+
+// TODO: Find a better way to manage parent/child theme imports
+@import '../../../btpl_base/assets/styles/main';
+@import '../../../btpl_base/assets/styles/**';
+
+$color-bg: #161616;
+$color-fg: #ccc;
+
+$color-primary-1: #76ff87;
+$color-primary-2: #edff77;
+
+
+$color-random-green: #b7e649;
+
+// Links
+@mixin link-style-base {
+    border-radius: .3em;
+    padding: 0 .2em;
+    text-shadow: 0 2px #111;
+    background-color: #111;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+@mixin link-style-1($fg) {
+    @include link-style-base;
+    color: #76ff87;
+}
+
+@mixin link-style-2($fg) {
+    @include link-style-base;
+    color: #edff77;
+}
+
+@mixin link-style($fg) {
+    @include link-style-base;
+    color: $fg;
+}
+
+
+// Lists
+@mixin hyphenated-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    //font-size:10px;
+
+    ul {
+        margin-left: $spacing_x;
+        margin-bottom: 0.5em;
+    }
+    ul > li {
+        margin-bottom: 0.1em;
+    }
+
+    li:before {
+        content: "";
+        display: inline-block;
+        width: 8px;
+        height: 3px;
+        margin-bottom: 0.25em;
+        margin-right: 0.5em;
+        background-color: $color-primary-2;
+    }
+}
+
+
+
+
+
+body {
+    color: $color-fg;
+    background: $color-bg;
+    padding: 0;
+    margin: 0;
+    font-family: Muli, sans-serif;
+}
+
+a {
+    color: $color-fg;
+}
+
+#root {
+
+}
+
+article.post {
+    background: rgba(100,100,100,0.05);
+    padding: $spacing_y;
+
+    .post-title {
+        padding-bottom: 0.1em;
+        border-bottom: 1px solid #222;
+    }
+
+    .post-content {
+        ul {
+            @include hyphenated-list;
+        }
+    }
+
+    // Tag style links
+    a[href] {
+        @include link-style($color-primary-2);
+
+    }
+
+}
+

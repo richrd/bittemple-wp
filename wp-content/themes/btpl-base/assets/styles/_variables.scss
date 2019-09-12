@@ -1,0 +1,18 @@
+
+// Default spacing used for margins and paddings and grid purpouses
+$spacing: 25px;
+$spacing_x: $spacing;
+$spacing_y: $spacing;
+
+
+// Page spacing that is used to avoid having the content too close to the
+// edge of the browser window. Some content like a featured images of posts
+// can be shown without any margin (edge to edge) but text should always
+// have some margin to make it fit in better.
+$page_margin: $spacing;
+$page_margin_x: $page_margin;
+$page_margin_y: $page_margin;
+
+// The maximum width that the page content should be.
+// The page content is always surrounded by a margin of at least: $page_x_margin.
+$content-max-width: 1200px;

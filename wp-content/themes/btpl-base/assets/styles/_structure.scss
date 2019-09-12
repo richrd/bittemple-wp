@@ -1,0 +1,37 @@
+#root {
+    
+}
+
+
+#top {
+    margin: 0 #{-$spacing} $spacing #{-$spacing};
+    padding: 0 $spacing;
+
+    header {
+        padding: $spacing_y $spacing_x;
+        h1 {
+            margin: 0;
+            a {
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+#main {
+
+}
+
+#bottom {
+    margin: 0 #{-$spacing} $spacing #{-$spacing};
+    padding: 0 $spacing;
+
+    footer {
+        padding: $spacing_y $spacing_x;
+    }
+}
+
+.content-max-width {
+    max-width: $content-max-width;
+    margin: 0 auto;
+}
