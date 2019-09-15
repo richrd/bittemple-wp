@@ -24,7 +24,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 
 /**
- * Currently plugin version.
+ * Current plugin version.
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
@@ -39,7 +39,7 @@ class Bittemple_Search_Relevance {
     /*
     * Improve WordPress searh by ordering the results by relevance.
     * Relevance is determined by counting the occurences of the search term in the post content.
-    * 
+    *
     * NOTE: this works best with a single keyword search
     */
     function get_search_keyword_fields() {
@@ -120,7 +120,7 @@ class Bittemple_Search_Relevance {
 
         return $orderby_statement;
     }
-} 
+}
 
 
 /**
