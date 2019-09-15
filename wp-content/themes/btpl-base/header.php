@@ -13,9 +13,7 @@
 
 </head>
 
-<body <?php body_class(); // Standard WP body classes ?>>
-    <span id="top-anchor"></span>
-    <div id="root">
+<?php get_template_part( "template-parts/body", "start" ); ?>
 
         <div id="top">
             <div class="content-max-width">
