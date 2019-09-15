@@ -80,8 +80,8 @@ a {
     opacity: 1;
     transition: .5s opacity ease-in-out;
 }
-#root.hidden {
-    opacity: 0;
+.hidden {
+    opacity: 0 !important;
     transition: .5s opacity ease-in-out;
 }
 

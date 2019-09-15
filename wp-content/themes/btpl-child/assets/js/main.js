@@ -19,7 +19,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
     });
     fx.start();
 
-    root.addEventListener("click", (e) => {
+    root.addEventListener('click', (e) => {
         root.classList.toggle('hidden')
     });
+
+    if (document.body.classList.contains('admin-bar')) {
+        window.addEventListener('keypress', (e) => {
+            if (e.key === 'a') {
+                document.getElementById('wpadminbar').classList.toggle('hidden')
+            }
+        });
+    }
 });
