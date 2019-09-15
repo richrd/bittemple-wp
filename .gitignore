@@ -1,0 +1,27 @@
+
+
+# Ignore everything in the root except the "wp-content" directory.
+/*
+!.gitignore
+!403.html
+!404.html
+!wp-content/
+
+# Ignore everything in the "wp-content" directory, except the "plugins" and "themes" directories.
+wp-content/*
+!wp-content/plugins/
+!wp-content/mu-plugins/
+!wp-content/themes/
+
+
+# Ignore everything in the "themes" directory except btpl themes
+wp-content/themes/*
+!wp-content/themes/btpl-*
+
+# Ignore everything in the "plugins" directory, except btpl plugins
+wp-content/plugins/*
+!wp-content/plugins/btpl-*
+
+# Ignore compiled CSS files
+wp-content/themes/btpl-base/assets/css/*
+wp-content/themes/btpl-child/assets/css/*
