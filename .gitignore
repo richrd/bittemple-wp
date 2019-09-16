@@ -6,6 +6,7 @@
 !403.html
 !404.html
 !wp-content/
+!webhook-test
 
 # Ignore everything in the "wp-content" directory, except the "plugins" and "themes" directories.
 wp-content/*
