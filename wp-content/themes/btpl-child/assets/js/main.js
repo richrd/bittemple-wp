@@ -7,14 +7,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
         // Node circle radius
         nodeRadius: 3,
         nodeLineWidth: 3,
+        nodeToAreaRatio: 0.00011,
+        maxNodeCount: 200,
         // Width of nodes and lines
         linkLineWidth: 3,
         // Strategy to use when a node comes too close to the edge of the canvas
-        edgeMode: 'bounce', // warp or bounce
+        edgeMode: 'warp', // warp or bounce
+        //edgeMode: 'bounce', // warp or bounce
         // Node movement mode. Currently just one of ["linear", "pseudogrid"]
         movementType: 'pseudogrid',
         // Speed ratio
-        speedRatio: .15,
+        //speedRatio: 1.15,
+        speedRatio: 1,
+        // speedRatio: 0.05,
+        //speedRatio: 1.15,
         //backgroundColor: 'rgba(0,0,0,0.01)',
     });
     fx.start();

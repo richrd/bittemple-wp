@@ -2,7 +2,7 @@
 (function () {
   "use strict";
 
-  const DEBUG = false;
+  const DEBUG = true;
 
     const distance = (node1, node2) => {
         return Math.sqrt(
@@ -42,10 +42,13 @@
         constructor(options) {
             this.x = 0;
             this.y = 0;
+            this.maxX = 0;
+            this.maxY = 0;
+            this.speed = {x: 0, y: 0};
             this.speedRatio = 550;
             this.movementType = 'linear';
 
-            this.movementTypes= {
+            this.movementTypes = {
                 linear: (delta) => {
                     // Basic linear movement
                     this.x += this.speed.x * delta;
@@ -56,20 +59,64 @@
                     // This creates weird orderly movement and structures in
                     // multiples of 45 degrees with a grid like feel.
                     // Really captivating to watch.
-                    this.x += this.speed.x * delta;
-                    this.y += this.speed.y * delta;
+
 
                     // The small amount of randomness prevents nodes from getting stuck
                     const randomDivisor = -10;
                     const scale = 20;
+                    /*
+                    this.x += this.speed.x * delta;
+                    this.y += this.speed.y * delta;
+
 
                     this.speed.x = Math.sin((this.y+Math.random()) / scale) / (20 + (Math.random() / randomDivisor));
                     this.speed.y = Math.sin((this.x+Math.random()) / scale) / (20 + (Math.random() / randomDivisor));
+                    */
+                    let x = this.x + (this.speed.x * delta);
+                    let y = this.y + (this.speed.y * delta);
+                    this.x = x;
+                    this.y = y;
+
+                    // Prevent glitching at edges
+                    x += -999999.666669;
+                    y += -999999.666669;
+
+                    this.speed.x = Math.sin((y+Math.random()) / scale) / (20 + (Math.random() / randomDivisor));
+                    this.speed.y = Math.sin((x+Math.random()) / scale) / (20 + (Math.random() / randomDivisor));
+
+                    // Prevent congestion in left top corner
+                    //this.x += 0.01;
+                    //this.y += 0.01;
+
+                    this.x += 0.0005 * delta;
+                    this.y += 0.0005 * delta;
+                }
+            }
+
+            this.collisionTypes = {
+                linear: () => {
+                },
+                pseudogrid: () => {
+                    //const x = this.speed.x;
+                    const y = this.speed.y;
+                    this.speed.x = y;
+                    this.speed.y = y;
+
                 }
             }
 
             applyOptions(this, options);
 
+            this.setRandomPosition();
+            this.setRandomSpeed();
+        }
+
+        setRandomPosition() {
+            this.x = getRandomInt(this.maxX+1);
+            this.y = getRandomInt(this.maxY+1);
+        }
+
+        setRandomSpeed() {
             this.speed = {
                 x: ((getRandomInt(10)/this.speedRatio) + 0.02) * (getRandomInt(2) ? 1 : -1),
                 y: ((getRandomInt(10)/this.speedRatio) + 0.02) * (getRandomInt(2) ? 1 : -1),
@@ -78,6 +125,10 @@
 
         update(delta) {
             this.movementTypes[this.movementType](delta)
+        }
+
+        collide() {
+            //this.collisionTypes[this.movementType]()
         }
     }
 
@@ -97,15 +148,15 @@
             this.backgroundColor = null;
             this.speedRatio = 1;
             this.color = [237, 255, 119];
+            this.nodeToAreaRatio = 0.0001;
             this.maxNodeCount = 150;
             this.minLinkDistance = 150;
             this.nodeRadius = 8;
-            this.edgeMode = 'bounce';
-            this.edgePadding = 3.33;
+            this.edgeMode = 'warp';
+            this.edgePadding = 53.33;
             this.movementType = 'linear';
             this.linkLineWidth = 3;
             this.nodeLineWidth = 3;
-            this.nodeToAreaRatio = 0.0001;
 
             applyOptions(this, options);
 
@@ -185,9 +236,9 @@
                 i += 1;
                 const node = new Node({
                     movementType: this.movementType,
+                    maxX: this.width,
+                    maxY: this.height,
                 });
-                node.x = getRandomInt(this.width+1);
-                node.y = getRandomInt(this.height+1);
                 this.nodes.push(node);
             }
 
@@ -211,10 +262,15 @@
 
             for (const node of this.nodes) {
                 node.update(delta);
+                let collided = false;
                 if (this.edgeMode === 'warp') {
-                    this.warpNode(node);
+                    collided = this.warpNode(node);
                 } else {
-                    this.bounceNode(node);
+                    collided = this.bounceNode(node);
+                }
+
+                if (collided) {
+                    node.collide()
                 }
             }
 
@@ -226,33 +282,47 @@
         }
 
         bounceNode(node) {
+            let collided = false;
             if (node.x < this.edgePadding) {
                 node.x = this.edgePadding;
                 node.speed.x *= -1;
-            } else if (node.x > this.width-this.edgePadding) {
-                node.x = this.width-this.edgePadding;
+                collided = true;
+            } else if (node.x > this.width - this.edgePadding) {
+                node.x = this.width - this.edgePadding;
                 node.speed.x *= -1
+                collided = true;
             }
             if (node.y < this.edgePadding) {
                 node.y = this.edgePadding;
                 node.speed.y *= -1;
-            } else if (node.y > this.height-this.edgePadding) {
-                node.y = this.height-this.edgePadding;
+                collided = true;
+            } else if (node.y > this.height - this.edgePadding) {
+                node.y = this.height - this.edgePadding;
                 node.speed.y *= -1
+                collided = true;
             }
+
+            return collided;
         }
 
         warpNode(node) {
+            let collided = false;
             if (node.x < this.edgePadding) {
-                node.x = this.width-this.edgePadding;
-            } else if (node.x > this.width-this.edgePadding) {
+                node.x = this.width - this.edgePadding;
+                collided = true;
+            } else if (node.x > this.width - this.edgePadding) {
                 node.x = this.edgePadding;
+                collided = true;
             }
             if (node.y < this.edgePadding) {
-                node.y = this.height-this.edgePadding;
-            } else if (node.y > this.height-this.edgePadding) {
+                node.y = this.height - this.edgePadding;
+                collided = true;
+            } else if (node.y > this.height - this.edgePadding) {
                 node.y = this.edgePadding;
+                collided = true;
             }
+
+            return collided;
         }
 
         async render() {
@@ -266,7 +336,6 @@
             for (const [i1, node] of this.nodes.entries()) {
 
                 let closestDistance = null;
-
 
                 for (const [i2, node2] of this.nodes.entries()) {
                     // Prevent cross checking a pair of nodes twice

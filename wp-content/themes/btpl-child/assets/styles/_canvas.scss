@@ -1,10 +1,12 @@
 
 #fx-canvas {
     position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
+    left: -100px;
+    right: -100px;
+    top: -100px;
+    bottom: -100px;
+    width: calc(100% + 200px);
+    height: calc(100% + 200px);
     z-index: -1;
 }
 
