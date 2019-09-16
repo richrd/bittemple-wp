@@ -1,6 +1,6 @@
+# WP gitignore
 
-
-# Ignore everything in the root except the "wp-content" directory.
+# Ignore everything in the root except the "wp-content" directory and a few specific files.
 /*
 !.gitignore
 !403.html
@@ -8,12 +8,11 @@
 !wp-content/
 !webhook-test
 
-# Ignore everything in the "wp-content" directory, except the "plugins" and "themes" directories.
+# Ignore everything in the "wp-content" directory, except the "plugins", "mu-plugins" and "themes" directories.
 wp-content/*
 !wp-content/plugins/
 !wp-content/mu-plugins/
 !wp-content/themes/
-
 
 # Ignore everything in the "themes" directory except btpl themes
 wp-content/themes/*
