@@ -1,16 +1,13 @@
 <?php
-/*
-   Plugin Name: Bittemple WP Harden
-   Plugin URI: http://example.com
-   description: Disable unneeded WP features
-   Version: 0.1
-   Author: Richard Lewis
-   Author URI: http://bittemple.org
-   License: UNLICENSED
-*/
+/**
+ * Plugin Name:       Bittemple WP Harden
+ * description:       Disable unneeded WP features
+ * Version:           0.0.1
+ * Author:            Richard Lewis
+ * Author URI:        http://bittemple.org
+ */
 
-
- // If this file is called directly, abort.
+// If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
     die;
 }
@@ -79,6 +76,7 @@ add_action( 'wp_loaded', function () {
 
         /*
          * Hide WP version strings from scripts, styles rss feeds etc.
+         * This is rather unnecessary but was fun to do anyway.
          * NOTE: WP-Scan still detects the version by using advanced
          *       file fingerprinting with md5 hashes.
          */

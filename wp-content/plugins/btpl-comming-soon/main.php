@@ -1,18 +1,17 @@
 <?php
-/*
-   Plugin Name: Bittemple Minimalist Comming Soon Page
-   Plugin URI: http://example.com
-   description: Bittemple Minimalist Comming Soon Page
-   Version: 0.1
-   Author: Richard Lewis
-   Author URI: http://bittemple.org
-   License: UNLICENSED
-*/
+/**
+ * Plugin Name:       Bittemple Minimalist Comming Soon Page
+ * description:       Minimalist coming soon page.
+ * Version:           0.0.1
+ * Author:            Richard Lewis
+ * Author URI:        http://bittemple.org
+ */
 
- // If this file is called directly, abort.
+// If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
     die;
 }
+
 
 (function () {
     $btpl_run_comming_soon = function() {

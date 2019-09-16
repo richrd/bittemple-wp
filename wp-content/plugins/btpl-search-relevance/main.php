@@ -1,23 +1,13 @@
 <?php
 /**
- * @link              http://example.com
- * @since             1.0.0
- * @package           Bittemple_Search_Relevance
- *
- * @wordpress-plugin
  * Plugin Name:       Bittemple Search Relevance
- * Plugin URI:        http://example.com/plugin-name-uri/
- * Description:       TODO: This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       Orders search results by keyword count.
  * Version:           1.0.0
  * Author:            Richard Lewis
- * Author URI:        http://example.com/
- * License:           MIT
- * License URI:       TODO
- * Text Domain:       btpl-search-relevance
- * Domain Path:       /languages
+ * Author URI:        http://bittemple.org
  */
 
- // If this file is called directly, abort.
+// If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
     die;
 }
@@ -93,9 +83,9 @@ class Bittemple_Search_Relevance {
             $keywordEscaped = esc_sql(strtolower($keyword));
             $calcKeywordCount = "
                 (
-                (Length(" . $wpdb->prefix . "posts.post_content) - (
-                    Length(Replace(Lower(" . $wpdb->prefix . "posts.post_content), '" . $keywordEscaped . "', ''))
-                )) / Length('" . $keywordEscaped . "')
+                    (Length(" . $wpdb->prefix . "posts.post_content) - (
+                        Length(Replace(Lower(" . $wpdb->prefix . "posts.post_content), '" . $keywordEscaped . "', ''))
+                    )) / Length('" . $keywordEscaped . "')
                 )
             ";
 
@@ -127,7 +117,7 @@ class Bittemple_Search_Relevance {
  * Begins execution of the plugin.
  *
  * Since everything within the plugin is registered via hooks,
- * then kicking off the plugin from this point in the file does
+ * kicking off the plugin from this point in the file does
  * not affect the page life cycle.
  *
  * @since    1.0.0
