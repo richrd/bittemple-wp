@@ -9,18 +9,18 @@
             (Math.pow(Math.abs(node1.x) - Math.abs(node2.x),2)) +
             (Math.pow(Math.abs(node1.y) - Math.abs(node2.y),2))
         );
-    }
+    };
 
     const getRandomInt = (max) => {
         return Math.floor(Math.random() * Math.floor(max));
-    }
+    };
 
     const debug = (...args) => {
         if (!DEBUG) {
             return;
         }
-        console.log(...args)
-    }
+        console.log(...args);
+    };
 
     const applyOptions = (target, options) => {
         if (!options) {
@@ -36,7 +36,7 @@
 
             target[key] = value;
         }
-    }
+    };
 
     class Node {
         constructor(options) {
@@ -120,11 +120,11 @@
             this.speed = {
                 x: ((getRandomInt(10)/this.speedRatio) + 0.02) * (getRandomInt(2) ? 1 : -1),
                 y: ((getRandomInt(10)/this.speedRatio) + 0.02) * (getRandomInt(2) ? 1 : -1),
-            }
+            };
         }
 
         update(delta) {
-            this.movementTypes[this.movementType](delta)
+            this.movementTypes[this.movementType](delta);
         }
 
         collide() {
@@ -185,7 +185,7 @@
             this.resize();
 
             // Generate nodes based on screen size
-            this.generateNodes()
+            this.generateNodes();
 
             // Create the 2d rendering context
             this.ctx = this.canvas.getContext('2d');
@@ -242,7 +242,7 @@
                 this.nodes.push(node);
             }
 
-            debug("generated", this.nodes.length, "nodes")
+            debug("generated", this.nodes.length, "nodes");
         }
 
         resize() {
@@ -270,7 +270,7 @@
                 }
 
                 if (collided) {
-                    node.collide()
+                    node.collide();
                 }
             }
 
@@ -289,7 +289,7 @@
                 collided = true;
             } else if (node.x > this.width - this.edgePadding) {
                 node.x = this.width - this.edgePadding;
-                node.speed.x *= -1
+                node.speed.x *= -1;
                 collided = true;
             }
             if (node.y < this.edgePadding) {
@@ -298,7 +298,7 @@
                 collided = true;
             } else if (node.y > this.height - this.edgePadding) {
                 node.y = this.height - this.edgePadding;
-                node.speed.y *= -1
+                node.speed.y *= -1;
                 collided = true;
             }
 
@@ -330,7 +330,7 @@
                 this.ctx.fillStyle = this.backgroundColor;
                 this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
             } else {
-                this.canvas.width = this.canvas.width
+                this.canvas.width = this.canvas.width;
             }
 
             for (const [i1, node] of this.nodes.entries()) {
@@ -372,7 +372,9 @@
             }
         }
     }
+
     window.canvasFx = {
         nodeFx: CanvasNodeEffect,
-    }
+    };
+
 })();
