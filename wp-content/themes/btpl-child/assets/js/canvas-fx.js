@@ -8,7 +8,7 @@
         return Math.sqrt(
             (Math.pow(Math.abs(node1.x) - Math.abs(node2.x),2)) +
             (Math.pow(Math.abs(node1.y) - Math.abs(node2.y),2))
-        )
+        );
     }
 
     const getRandomInt = (max) => {
