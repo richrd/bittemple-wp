@@ -3,6 +3,17 @@
 /******************************************************************************
  * POST STYLES
  */
+article {
+
+    // Basic styles for code formattig
+    code,
+    pre.wp-block-preformatted
+    {
+        padding: .2em .4em;
+        background-color: rgba(127,127,127,.5);
+        border-radius: 3px;
+    }
+}
 article.post {
 
     margin-bottom: $spacing_y;
@@ -11,11 +22,7 @@ article.post {
         margin-top: 0;
     }
 
-    .post-metadata {
-        .fa {
-            margin-right: $spacing/4;
-        }
-
+    .post-meta {
         div {
             display: inline-block;
             margin-top: $spacing/2;
