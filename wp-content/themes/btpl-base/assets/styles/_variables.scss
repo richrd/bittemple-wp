@@ -1,18 +1,34 @@
 
 // Default spacing used for margins and paddings and grid purpouses
-$spacing: 25px;
-$spacing_x: $spacing;
-$spacing_y: $spacing;
-
+$spacing: 25px !default;
+$spacing_x: $spacing !default;
+$spacing_y: $spacing !default;
 
 // Page spacing that is used to avoid having the content too close to the
 // edge of the browser window. Some content like a featured images of posts
 // can be shown without any margin (edge to edge) but text should always
 // have some margin to make it fit in better.
-$page_margin: $spacing;
-$page_margin_x: $page_margin;
-$page_margin_y: $page_margin;
+$page_margin: $spacing !default;
+$page_margin_x: $page_margin !default;
+$page_margin_y: $page_margin !default;
 
 // The maximum width that the page content should be.
 // The page content is always surrounded by a margin of at least: $page_x_margin.
-$content-max-width: 1200px;
+$content-max-width: 1200px !default;
+
+// Breakpoints. Three screen, small, medium, large
+$breakpoint-sm-max: 700px !default;
+$breakpoint-md-min: #{$breakpoint-sm-max + 1px};
+$breakpoint-md-max: 900px !default;
+$breakpoint-lg-min: #{$breakpoint-md-max + 1px};
+$breakpoint-lg-max: 1200px !default;
+
+// Colors
+$page-bg: var(--theme-color-page-background) !default;
+$page-fg: var(--theme-color-page-foreground) !default;
+$page-fg-muted: var(--theme-color-page-foreground-muted) !default;
+
+// Transitions
+$transition-duration-slow: 1s !default;
+$transition-duration-normal: 0.3s !default;
+$transition-duration-fast: 0.1s !default;

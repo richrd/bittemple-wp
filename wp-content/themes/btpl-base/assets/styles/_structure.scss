@@ -1,37 +1,110 @@
-#root {
-    
-}
-
-
 #top {
-    margin: 0 #{-$spacing} $spacing #{-$spacing};
-    padding: 0 $spacing;
-
     header {
-        padding: $spacing_y $spacing_x;
-        h1 {
-            margin: 0;
-            a {
-                text-decoration: none;
+        padding: $page_margin_y $page_margin_x;
+
+        @media screen and (max-width: $breakpoint-sm-max) {
+            position: relative;
+        }
+
+        .header-content {
+            display: grid;
+            grid-template-columns: #{"[left] auto [center] 1fr [right] auto"};
+            grid-template-rows: #{"[top] auto [center] auto [bottom] auto"};
+            width: 100%;
+
+            .main-menu {
+                grid-column-start: center;
+                grid-column-end: -1;
+                grid-row-start: top;
+                grid-row-end: bottom;
+                margin-left: $spacing;
+
+                // Mobile nav
+                @media screen and (max-width: $breakpoint-sm-max) {
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    right: 0;
+                    margin: 0;
+                    z-index: 10;
+                }
+            }
+
+            .main-menu-toggle {
+                grid-column: right;
+                grid-row-start: top;
+                grid-row-end: bottom;
+            }
+
+            .site-title {
+                margin: 0;
+                grid-column: left;
+                a {
+                    text-decoration: none;
+                    color: inherit;
+                }
+            }
+            .site-description {
+                grid-column: left;
             }
         }
     }
 }
 
 #main {
+    main {
+        article {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
 
+            // Article/Post/Page page margins and max width
+            .post-title,
+            .post-excerpt,
+            .post-meta {
+                max-width: $content-max-width;
+                width: 100%;
+                width: calc(100% - #{$page_margin_x * 2});
+            }
+
+            .post-content {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin-left: $page_margin_x;
+                margin-right: $page_margin_x;
+                width: calc(100% - #{$page_margin_x * 2});
+
+                > * {
+                    max-width: $content-max-width;
+                    margin-left: auto;
+                    margin-right: auto;
+                    width: 100%;
+                }
+
+                > .alignwide {
+                    margin: 0 #{-$page_margin_x};
+                    width: calc(100% + #{$page_margin_x * 2});
+                    max-width: $content-max-width;
+                }
+
+                > .alignfull {
+                    margin: 0 #{-$page_margin_x};
+                    width: calc(100% + #{$page_margin_x * 2});
+                    max-width: none;
+                }
+            }
+        }
+    }
 }
 
 #bottom {
-    margin: 0 #{-$spacing} $spacing #{-$spacing};
+    margin: 0 #{-$spacing} 0 #{-$spacing};
     padding: 0 $spacing;
 
     footer {
         padding: $spacing_y $spacing_x;
     }
-}
-
-.content-max-width {
-    max-width: $content-max-width;
-    margin: 0 auto;
 }

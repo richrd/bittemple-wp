@@ -4,6 +4,7 @@
  * POST STYLES
  */
 article {
+    margin-bottom: $spacing_y;
 
     // Basic styles for code formattig
     code,
@@ -13,13 +14,9 @@ article {
         background-color: rgba(127,127,127,.5);
         border-radius: 3px;
     }
-}
-article.post {
-
-    margin-bottom: $spacing_y;
 
     .post-title {
-        margin-top: 0;
+
     }
 
     .post-meta {
