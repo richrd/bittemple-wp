@@ -1,0 +1,10 @@
+@font-face {
+    font-family:"Miso Light";
+    font-display: swap;
+    src: url("miso-light.eot?") format("eot"),
+        url("miso-light.woff") format("woff"),
+        url("miso-light.ttf") format("truetype"),
+        url("miso-light.svg#Miso-Light") format("svg");
+    font-weight:normal;
+    font-style:normal;
+}
