@@ -4,9 +4,11 @@
         <?php the_title(); ?>
     </h1>
 
+    <?php if( has_excerpt() ) : ?>
     <div class="post-excerpt">
         <?php the_excerpt(); ?>
     </div>
+    <?php endif; ?>
 
     <div class="post-content">
         <?php the_content(); ?>
