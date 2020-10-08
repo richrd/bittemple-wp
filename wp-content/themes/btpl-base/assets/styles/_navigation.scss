@@ -101,7 +101,7 @@
         overflow: hidden;
         height: auto;
         max-height: 0;
-        transition: max-height $transition-duration-slow;
+        transition: max-height $transition-duration-long;
         > div {
             padding-bottom: $spacing;
             flex-direction: column;
@@ -114,7 +114,7 @@
         text-decoration: none;
         width: 2rem;
         text-align: center;
-        transition: color $transition-duration-fast;
+        transition: color $transition-duration-short;
 
         &:after {
             content: "☰";

@@ -96,15 +96,21 @@
                     max-width: none;
                 }
             }
+            
+            &.page .post-meta {
+                display: none;
+            }
         }
     }
 }
 
 #bottom {
-    margin: 0 #{-$spacing} 0 #{-$spacing};
-    padding: 0 $spacing;
-
+    display: flex;
+    justify-content: center;
     footer {
-        padding: $spacing_y $spacing_x;
+        width: 100%;
+        max-width: $content-max-width;
+        margin-left: $page_margin_x;
+        margin-right: $page_margin_x;
     }
 }

@@ -29,6 +29,6 @@ $page-fg: var(--theme-color-page-foreground) !default;
 $page-fg-muted: var(--theme-color-page-foreground-muted) !default;
 
 // Transitions
-$transition-duration-slow: 1s !default;
+$transition-duration-long: 1s !default;
 $transition-duration-normal: 0.3s !default;
-$transition-duration-fast: 0.1s !default;
+$transition-duration-short: 0.1s !default;

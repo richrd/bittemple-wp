@@ -12,36 +12,64 @@ html, body{
 }
 
 
-// Content margin system
-h1, h2, h3, h4, h5, h6, p {
-    margin-top: 0;
-    margin-bottom: $spacing;
-}
-h1, h2, h3, h4, h5, h6 {
-    line-height: 1;
-}
+body .block-editor-writing-flow,
+#main,
+#bottom {
+    // Content margin system
+    h1, h2, h3, h4, h5, h6, p, ol, ul {
+        margin-top: 0;
+        margin-bottom: $spacing;
+    }
 
-// TODO: Add font sizes to gutenberg options
-h1 {
-    font-size: 32px;
-}
-h2 {
-    font-size: 24px;
-}
-h3 {
-    font-size: 20px;
-}
-h4 {
-    font-size: 18px;
-}
-h5 {
-    font-size: 16px;
-}
-h6 {
-    font-size: 15px;
-}
-hr {
-    background: currentColor;
-    height: 1px;
-    border: none;
+    // Heading styles
+    h1, h2, h3, h4, h5, h6 {
+        line-height: 1;
+    }
+
+    // TODO: Add font sizes to gutenberg options
+    h1 {
+        font-size: 32px;
+    }
+    h2 {
+        font-size: 24px;
+    }
+    h3 {
+        font-size: 20px;
+    }
+    h4 {
+        font-size: 18px;
+    }
+    h5 {
+        font-size: 16px;
+    }
+    h6 {
+        font-size: 15px;
+    }
+
+    ol, ul {
+        padding-left: $spacing;
+    }
+    ol {
+        list-style: none;
+        counter-reset: listitem;
+        padding-left: 0;
+        li {
+            &:before {
+                counter-increment: listitem;
+                content: counter(listitem) ".";
+                display: inline-block;
+                width: $spacing;
+                color: var(--theme-color-page-foreground-muted);
+            }
+        }
+    }
+
+    // Other elements
+    hr {
+        background: currentColor;
+        height: 1px;
+        border: none;
+        margin-top: 0;
+        margin-bottom: $spacing;
+    }
 }

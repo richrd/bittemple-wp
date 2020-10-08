@@ -82,6 +82,12 @@ add_action('after_setup_theme', function () {
             return null;
         }
 
+        public function get_post_classes() {
+            $classes = [];
+            $classes[] = is_singular() ? 'is-singular' : 'not-singular';
+            return join( ' ', $classes );
+        }
+
         private function setup_theme_support() {
             // Let WordPress manage the document title tag.
             add_theme_support('title-tag');
@@ -172,6 +178,7 @@ add_action('after_setup_theme', function () {
 
                 $variables .= '    --theme-color-' . $color['slug'] . ': ' . $value . ";\n";
                 $classes .= '.has-' . $color['slug'] . '-color{color: var(--theme-color-' . $color['slug'] . ")}\n";
+                $classes .= '.has-' . $color['slug'] . '-background-color{background-color: var(--theme-color-' . $color['slug'] . ")}\n";
             }
             $variables .= "}";
 
