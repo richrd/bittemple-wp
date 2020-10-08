@@ -3,7 +3,7 @@
 add_action('after_setup_theme', function () {
     /*
      * Encapsulate everything in an anonymous class to
-     * avoid polluting the global namespace.
+     * avoid having everything in the global namespace.
      */
     $theme = new class() {
         public function __construct() {
@@ -24,7 +24,7 @@ add_action('after_setup_theme', function () {
                 [
                     'name' => __( 'Page Foreground', 'btpl-base' ),
                     'slug' => 'page-foreground',
-                    'color' => '#0f0',
+                    'color' => '#000',
                 ],
                 [
                     'name' => __( 'Page Foreground Muted', 'btpl-base' ),
@@ -55,6 +55,7 @@ add_action('after_setup_theme', function () {
             // Enqueue generated <style> tag with CSS variables etc
             add_action('wp_head', [$this, 'enqueue_inline_styles']);
             add_action('admin_head', [$this, 'enqueue_admin_inline_styles']);
+
 
             // Register Menus
             register_nav_menu('top-bar-menu', __( 'Top Bar Menu' ));
@@ -98,6 +99,9 @@ add_action('after_setup_theme', function () {
             // Enable wide and full width alignment in Gutenberg
             add_theme_support('align-wide');
 
+            // Theme support for responsive embeds (like Youtube)
+            add_theme_support('responsive-embeds');
+
             // Switch default core markup for search form, comment form, and comments
             // to output valid HTML5.
             add_theme_support('html5', array(
@@ -120,6 +124,7 @@ add_action('after_setup_theme', function () {
                 ),
             );
             add_theme_support('custom-logo', $customLogoDefaults);
+
             add_filter('excerpt_length', [$this, 'filter_excerpt_length']);
             add_filter('excerpt_more', [$this, 'filter_excerpt_more']);
         }
@@ -159,7 +164,7 @@ add_action('after_setup_theme', function () {
         }
 
         public function enqueue_admin_inline_styles() {
-            // Output theme colors as CSS variables and `.has-*-color` classes
+            // Output theme colors in WP admin too, so that they're effective in the Gutenberg editor
             echo $this->generate_color_styles();
         }
 
@@ -167,6 +172,7 @@ add_action('after_setup_theme', function () {
             // Output theme colors as CSS variables and `.has-*-color` classes
             $variables = ":root {\n";
             $classes = "";
+
             foreach ($this->color_palette as $color) {
                 // Override default if the color is defined in theme settings
                 $override = $this->get_setting_value('theme-color-' . $color['slug']);
@@ -177,12 +183,13 @@ add_action('after_setup_theme', function () {
                 }
 
                 $variables .= '    --theme-color-' . $color['slug'] . ': ' . $value . ";\n";
-                $classes .= '.has-' . $color['slug'] . '-color{color: var(--theme-color-' . $color['slug'] . ")}\n";
-                $classes .= '.has-' . $color['slug'] . '-background-color{background-color: var(--theme-color-' . $color['slug'] . ")}\n";
+                $classes .= '.has-' . $color['slug'] . '-color{color: var(--theme-color-' . $color['slug'] . ") !important}\n";
+                $classes .= '.has-' . $color['slug'] . '-background-color{background-color: var(--theme-color-' . $color['slug'] . ") !important}\n";
             }
+
             $variables .= "}";
 
-            return "<style>\n$variables\n$classes</style>\n";
+            return "\n<style>\n$variables\n$classes</style>\n";
         }
 
         private function setup_sidebars() {
@@ -292,6 +299,7 @@ add_action('after_setup_theme', function () {
                   'default' => '', // Default value
                   'transport' => 'refresh', // or postMessage
             ));
+
             $wp_customize->add_control($this->_namespace('excerpt_length'), array(
                   'type' => 'number',
                   'priority' => 1,
@@ -307,6 +315,7 @@ add_action('after_setup_theme', function () {
                   'default' => '', // Default value
                   'transport' => 'refresh', // or postMessage
             ));
+
             $wp_customize->add_control($this->_namespace('excerpt_more'), array(
                   'type' => 'text',
                   'priority' => 1,
@@ -380,7 +389,6 @@ add_action('after_setup_theme', function () {
         }
     }
 
-
     // Expose the class to the theme
     global $btpl_base_theme;
     $btpl_base_theme = $theme;
@@ -388,4 +396,4 @@ add_action('after_setup_theme', function () {
         global $btpl_base_theme;
         return $btpl_base_theme;
     }
-}, 999);
+});
