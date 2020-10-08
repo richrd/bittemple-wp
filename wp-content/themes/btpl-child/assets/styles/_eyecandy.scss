@@ -1,0 +1,55 @@
+@import "_custom-variables.scss";
+@import "../../../btpl-base/assets/styles/_variables";
+
+.site-title {
+    transition: all $transition-duration-normal ease-in-out;
+    text-shadow: none;
+
+    &:hover {
+        color: var(--theme-color-bittemple-green-1);
+        text-shadow: 0 0 4.5px var(--theme-color-bittemple-green-1-shadow)
+    }
+}
+
+.particle {
+    display: inline-block;
+    position: absolute;
+    left: 100px;
+    top: 100px;
+    animation: rise 2s infinite linear;
+
+    &:before {
+        display: inline-block;
+        width: 3px;
+        height: 3px;
+        content: "";
+        transform: translateY(10px);
+        animation: sway .75s infinite ease-in-out;
+        // box-shadow: 0 0 10px var(--theme-color-bittemple-green-shadow-1)
+        background: var(--theme-color-bittemple-green-1);
+        border-radius: 1px;
+        box-shadow: 0 0 14.5px 5px var(--theme-color-bittemple-green-1)
+    }
+}
+
+
+
+@keyframes rise {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-50px);
+  }
+}
+@keyframes sway {
+  0% {
+    transform: translateX(-8px);
+  }
+  50% {
+    transform: translateX(8px);
+  }
+  100% {
+    transform: translateX(-8px);
+  }
+}

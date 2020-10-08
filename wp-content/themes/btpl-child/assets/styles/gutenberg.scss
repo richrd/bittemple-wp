@@ -1,0 +1,123 @@
+@import "_custom-variables.scss";
+@import "../../../btpl-base/assets/styles/_variables";
+@import "../../../btpl-base/assets/styles/gutenberg";
+
+body {
+    font-size: 16px;
+    font-family: "DINOT-Regular", sans-serif;
+}
+
+body .block-editor-writing-flow,
+#main,
+#bottom {
+    line-height: 1.6;
+    font-size: 18px;
+
+    .editor-post-title__input,
+    h1.post-title {
+        font-family: "Miso Light";
+        text-transform: uppercase;
+        font-weight: 100;
+        border-top: 1px solid var(--theme-color-page-foreground-accent-1);
+        border-bottom: 1px solid var(--theme-color-page-foreground-accent-1);
+        padding: #{$spacing / 2};
+        text-align: center;
+        font-size: 52px;
+    }
+
+    .post-title a {
+        color: currentColor;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: "Miso Light";
+        text-transform: uppercase;
+        //font-weight:
+    }
+    h2 {
+        font-size: 30px;
+    }
+
+    hr {
+        color: var(--theme-color-page-foreground-accent-1);
+    }
+
+    a {
+        text-decoration: none;
+        color: var(--theme-color-bittemple-green-1);
+        color: var(--theme-color-bittemple-yellow-1);
+    }
+
+    ul {
+
+        li {
+            list-style: none;
+            position: relative;
+            margin-bottom: #{$spacing / 4};
+
+            &:before {
+                content: "";
+                display: block;
+                height: 2px;
+                width: #{$spacing / 3};
+                background: var(--theme-color-page-foreground-muted);
+                border-radius: 1px;
+                position: absolute;
+                left: -$spacing;
+                top: .70em;
+            }
+        }
+    }
+    ul, .wp-block-buttons {
+        margin-top: 0;
+        margin-bottom: $spacing;
+    }
+    .btn,
+    .wp-block-button__link,
+    .wp-block-button a {
+        color: var(--theme-color-page-foreground);
+        background: transparent;
+        border: 1px solid currentColor;
+        border-color: var(--theme-color-page-foreground-muted);
+        border-radius: 0;
+        padding: #{$spacing / 2} $spacing;
+
+        font-family: "Miso Light", sans-serif;
+        font-size: 22px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        line-height: 1.5;
+
+        &:hover {
+            background: var(--theme-color-page-foreground-accent-2);
+            border-color: var(--theme-color-page-foreground);
+        }
+    }
+
+    // TODO: Move to block options plugin?
+    .wp-block-button.has-width-full-width {
+        width: 100%;
+        a {width: 100%;}
+    }
+    .wp-block-group.has-padding-medium {
+        padding: $spacing;
+
+        .wp-block-group__inner-container *:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    article.not-singular {
+        background: var(--theme-color-page-foreground-accent-1);
+        padding-top: $spacing;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: $content-max-width;
+
+        .post-title {
+            // border-bottom: 1px solid #222;
+            // padding-bottom: $spacing;
+        }
+    }
+}

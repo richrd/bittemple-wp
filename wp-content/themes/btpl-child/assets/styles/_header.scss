@@ -1,0 +1,37 @@
+
+#top header {
+    font-size: 20px;
+    font-family: "Miso";
+    background: var(--theme-color-page-background);
+    .site-title,
+    .site-description {
+        text-transform: uppercase;
+    }
+
+    .site-title {
+        font-family: "Miso Light";
+        font-weight: 600;
+        font-size: 40px;
+    }
+
+    .site-description {
+        font-size: 18px;
+        color: $page-fg-muted;
+    }
+}
+
+@media screen and (max-width: $breakpoint-sm-max) {
+    #root {
+        min-height: 100vh;
+    }
+    .main-menu-open {
+        #top {
+            position: sticky;
+            z-index: 1000;
+            top:0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+    }
+}

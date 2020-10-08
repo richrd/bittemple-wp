@@ -25,3 +25,4 @@ wp-content/plugins/*
 # Ignore compiled CSS files
 wp-content/themes/btpl-base/assets/css/*
 wp-content/themes/btpl-child/assets/css/*
+
